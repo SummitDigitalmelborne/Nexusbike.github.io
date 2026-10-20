@@ -1,47 +1,46 @@
 const ORDER_EMAIL = "nexusbike@tutamail.com";
 const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
-const resolveAssetUrl = assetPath => new URL(assetPath, window.location.href).toString();
 
 const products = [
     {
         id: 1,
-        name: "Brakes",
+        name: "Build Overview 01",
         category: "components",
         categoryLabel: "Components",
-        description: "High-performance braking kit for improved control and stopping power.",
-        price: 320,
-        image: resolveAssetUrl("Screenshot%202026-10-20%20160148.png"),
-        badge: "TOP PICK"
+        description: "A product-style reference image showing the first Nexus Bike build layout.",
+        price: 99,
+        image: "./Screenshot%202026-10-20%20160148.png",
+        badge: "SETUP"
     },
     {
         id: 2,
-        name: "Grips",
-        category: "cockpit",
-        categoryLabel: "Cockpit",
-        description: "Comfortable, grippy control surface designed for long rides.",
-        price: 5,
-        image: resolveAssetUrl("Screenshot%202026-10-20%20160657.png"),
-        badge: "BASIC"
+        name: "Build Overview 02",
+        category: "components",
+        categoryLabel: "Components",
+        description: "A product-style reference image showing the second Nexus Bike build layout.",
+        price: 129,
+        image: "./Screenshot%202026-10-20%20160657.png",
+        badge: "SETUP"
     },
     {
         id: 3,
-        name: "Light",
+        name: "Bicycle Light Set",
         category: "electrical",
         categoryLabel: "Electrical",
-        description: "Compact lighting upgrade for visibility and ride safety.",
-        price: 5,
-        image: resolveAssetUrl("Screenshot%202026-10-20%20161649.png"),
-        badge: "NEW"
+        description: "A compact bicycle light set with bright forward and rear lighting for night riding.",
+        price: 149,
+        image: "./assets/product-bicycle-light-set.svg",
+        badge: "LIGHT"
     },
     {
         id: 4,
-        name: "Display Screen",
-        category: "electrical",
-        categoryLabel: "Electrical",
-        description: "Clear, readable display for speed and ride information.",
-        price: 95,
-        image: resolveAssetUrl("Screenshot%202026-10-20%20162719.png"),
-        badge: "SMART"
+        name: "UKC1 Display",
+        category: "cockpit",
+        categoryLabel: "Cockpit",
+        description: "A digital e-bike display with a bright screen and essential ride metrics.",
+        price: 179,
+        image: "./assets/product-ukc1-display.svg",
+        badge: "DISPLAY"
     }
 ];
 
