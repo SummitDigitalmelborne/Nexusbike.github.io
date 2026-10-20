@@ -81,6 +81,16 @@ const products = [
         price: 259,
         image: "./assets/product-dropouts.svg",
         badge: "COMPONENTS"
+    },
+    {
+        id: 9,
+        name: "Ultra Bee Rear Brake Assembly Caliper Lever Line",
+        category: "components",
+        categoryLabel: "Components",
+        description: "Rear brake assembly caliper lever line for Ultra Bee, Surron LBX and Talaria models. Designed for sturdy braking performance without the rotor included.",
+        price: 249,
+        image: "./assets/product-ultra-bee-brake.svg",
+        badge: "BRAKE"
     }
 ];
 
