@@ -4,106 +4,6 @@ const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
 const products = [
     {
         id: 1,
-        name: "Performance Controller",
-        category: "electrical",
-        categoryLabel: "Electrical",
-        description: "An upgraded controller for compatible electric dirt bikes.",
-        price: 499,
-        image: "./assets/product-controller.svg",
-        badge: "ELECTRICAL"
-    },
-    {
-        id: 2,
-        name: "Precision Throttle",
-        category: "electrical",
-        categoryLabel: "Electrical",
-        description: "Replacement throttle assembly for compatible builds.",
-        price: 129,
-        image: "./assets/product-throttle.svg",
-        badge: "CONTROL"
-    },
-    {
-        id: 3,
-        name: "Lithium Battery",
-        category: "electrical",
-        categoryLabel: "Electrical",
-        description: "Battery replacement options for compatible models.",
-        price: 899,
-        image: "./assets/product-battery.svg",
-        badge: "POWER"
-    },
-    {
-        id: 4,
-        name: "Battery Bag",
-        category: "components",
-        categoryLabel: "Components",
-        description: "Storage for compatible battery setups.",
-        price: 79,
-        image: "./assets/product-bag.svg",
-        badge: "ACCESSORY"
-    },
-    {
-        id: 5,
-        name: "Lock-On Grips",
-        category: "cockpit",
-        categoryLabel: "Cockpit",
-        description: "Replacement grips for your handlebar setup.",
-        price: 49,
-        image: "./assets/product-grips.svg",
-        badge: "COCKPIT"
-    },
-    {
-        id: 6,
-        name: "Racing Handlebars",
-        category: "cockpit",
-        categoryLabel: "Cockpit",
-        description: "Handlebar upgrades for compatible electric dirt bikes.",
-        price: 289,
-        image: "./assets/product-handles.svg",
-        badge: "UPGRADE"
-    },
-    {
-        id: 7,
-        name: "CNC Foot Pegs",
-        category: "components",
-        categoryLabel: "Components",
-        description: "Foot peg upgrades for compatible bike models.",
-        price: 149,
-        image: "./assets/product-footpegs.svg",
-        badge: "HARDWARE"
-    },
-    {
-        id: 8,
-        name: "Rear Dropouts",
-        category: "components",
-        categoryLabel: "Components",
-        description: "Replacement dropout components for compatible builds.",
-        price: 259,
-        image: "./assets/product-dropouts.svg",
-        badge: "COMPONENTS"
-    },
-    {
-        id: 9,
-        name: "Ultra Bee Rear Brake Assembly Caliper Lever Line",
-        category: "components",
-        categoryLabel: "Components",
-        description: "Rear brake assembly caliper lever line for Ultra Bee, Surron LBX and Talaria models. Designed for sturdy braking performance without the rotor included.",
-        price: 300,
-        image: "./assets/product-ultra-bee-brake.svg",
-        badge: "BRAKE"
-    },
-    {
-        id: 10,
-        name: "Black Pro Taper Grip",
-        category: "cockpit",
-        categoryLabel: "Cockpit",
-        description: "Black Pro Taper-style grip for improved control, comfort and grip on your handlebar setup.",
-        price: 5,
-        image: "./assets/product-pro-taper-black-grip.svg",
-        badge: "COCKPIT"
-    },
-    {
-        id: 11,
         name: "UKC1 Display",
         category: "electrical",
         categoryLabel: "Electrical",
@@ -113,11 +13,11 @@ const products = [
         badge: "DISPLAY"
     },
     {
-        id: 12,
+        id: 2,
         name: "Barlight Bicycle Light Set",
         category: "components",
         categoryLabel: "Components",
-        description: "Mini portable bicycle light set with white LED headlight and red rear safety light. Quick 1-second installation, illumination plus warning light, and long-lasting battery life.",
+        description: "Mini portable bicycle light set with white LED headlight and red rear safety light. 1-second installation, illumination and warning light, and long-lasting battery life.",
         price: 5,
         image: "./assets/product-bicycle-light-set.svg",
         badge: "NEW"
