@@ -9,7 +9,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "An upgraded controller for compatible electric dirt bikes.",
         price: 499,
-        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=700&q=80",
+        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80",
         badge: "ELECTRICAL"
     },
     {
@@ -19,7 +19,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "Replacement throttle assembly for compatible builds.",
         price: 129,
-        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80",
+        image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80",
         badge: "CONTROL"
     },
     {
@@ -29,7 +29,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "Battery replacement options for compatible models.",
         price: 899,
-        image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=700&q=80",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=700&q=80",
         badge: "POWER"
     },
     {
@@ -39,7 +39,7 @@ const products = [
         categoryLabel: "Components",
         description: "Storage for compatible battery setups.",
         price: 79,
-        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",
+        image: "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=700&q=80",
         badge: "ACCESSORY"
     },
     {
@@ -49,7 +49,7 @@ const products = [
         categoryLabel: "Cockpit",
         description: "Replacement grips for your handlebar setup.",
         price: 49,
-        image: "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=700&q=80",
+        image: "https://images.unsplash.com/photo-1558980664-10e7170b5df9?auto=format&fit=crop&w=700&q=80",
         badge: "COCKPIT"
     },
     {
@@ -59,7 +59,7 @@ const products = [
         categoryLabel: "Cockpit",
         description: "Handlebar upgrades for compatible electric dirt bikes.",
         price: 289,
-        image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80",
+        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80",
         badge: "UPGRADE"
     },
     {
