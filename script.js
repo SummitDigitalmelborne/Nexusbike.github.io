@@ -4,43 +4,43 @@ const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
 const products = [
     {
         id: 1,
-        name: "Build Overview 01",
+        name: "Surron brakes",
         category: "components",
         categoryLabel: "Components",
-        description: "A product-style reference image showing the first Nexus Bike build layout.",
-        price: 99,
+        description: "Surron brake kit for confident stopping power and control.",
+        price: 320,
         image: "./Screenshot%202026-10-20%20160148.png",
-        badge: "SETUP"
+        badge: "BRAKES"
     },
     {
         id: 2,
-        name: "Build Overview 02",
+        name: "Surron-style grip",
         category: "components",
         categoryLabel: "Components",
-        description: "A product-style reference image showing the second Nexus Bike build layout.",
-        price: 129,
+        description: "Comfortable Surron-style grip for better handling and control.",
+        price: 5,
         image: "./Screenshot%202026-10-20%20160657.png",
-        badge: "SETUP"
+        badge: "GRIP"
     },
     {
         id: 3,
-        name: "Bicycle Light Set",
-        category: "electrical",
-        categoryLabel: "Electrical",
-        description: "A compact bicycle light set with bright forward and rear lighting for night riding.",
-        price: 149,
-        image: "./assets/product-bicycle-light-set.svg",
-        badge: "LIGHT"
+        name: "E-bike display, hands-free speed monitoring",
+        category: "cockpit",
+        categoryLabel: "Cockpit",
+        description: "E-bike display with hands-free speed monitoring and ride metrics.",
+        price: 95,
+        image: "./assets/product-ukc1-display.svg",
+        badge: "DISPLAY"
     },
     {
         id: 4,
-        name: "UKC1 Display",
-        category: "cockpit",
-        categoryLabel: "Cockpit",
-        description: "A digital e-bike display with a bright screen and essential ride metrics.",
-        price: 179,
-        image: "./assets/product-ukc1-display.svg",
-        badge: "DISPLAY"
+        name: "Barlight for e-bikes",
+        category: "electrical",
+        categoryLabel: "Electrical",
+        description: "Barlight for e-bikes with bright illumination for night riding.",
+        price: 5,
+        image: "./assets/product-bicycle-light-set.svg",
+        badge: "LIGHT"
     }
 ];
 
