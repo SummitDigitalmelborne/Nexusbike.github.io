@@ -5,43 +5,43 @@ const resolveAssetUrl = assetPath => new URL(assetPath, window.location.href).to
 const products = [
     {
         id: 1,
-        name: "Build Overview 01",
+        name: "Brakes",
         category: "components",
         categoryLabel: "Components",
-        description: "A product-style reference image showing the first Nexus Bike build layout.",
-        price: 99,
+        description: "High-performance braking kit for improved control and stopping power.",
+        price: 320,
         image: resolveAssetUrl("Screenshot%202026-10-20%20160148.png"),
-        badge: "SETUP"
+        badge: "TOP PICK"
     },
     {
         id: 2,
-        name: "Build Overview 02",
-        category: "components",
-        categoryLabel: "Components",
-        description: "A product-style reference image showing the second Nexus Bike build layout.",
-        price: 129,
+        name: "Grips",
+        category: "cockpit",
+        categoryLabel: "Cockpit",
+        description: "Comfortable, grippy control surface designed for long rides.",
+        price: 5,
         image: resolveAssetUrl("Screenshot%202026-10-20%20160657.png"),
-        badge: "SETUP"
+        badge: "BASIC"
     },
     {
         id: 3,
-        name: "Build Overview 03",
+        name: "Light",
         category: "electrical",
         categoryLabel: "Electrical",
-        description: "A product-style reference image showing the third Nexus Bike build layout.",
-        price: 149,
+        description: "Compact lighting upgrade for visibility and ride safety.",
+        price: 5,
         image: resolveAssetUrl("Screenshot%202026-10-20%20161649.png"),
-        badge: "SETUP"
+        badge: "NEW"
     },
     {
         id: 4,
-        name: "Build Overview 04",
+        name: "Display Screen",
         category: "electrical",
         categoryLabel: "Electrical",
-        description: "A product-style reference image showing the fourth Nexus Bike build layout.",
-        price: 179,
+        description: "Clear, readable display for speed and ride information.",
+        price: 95,
         image: resolveAssetUrl("Screenshot%202026-10-20%20162719.png"),
-        badge: "SETUP"
+        badge: "SMART"
     }
 ];
 
