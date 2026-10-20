@@ -88,9 +88,19 @@ const products = [
         category: "components",
         categoryLabel: "Components",
         description: "Rear brake assembly caliper lever line for Ultra Bee, Surron LBX and Talaria models. Designed for sturdy braking performance without the rotor included.",
-        price: 249,
+        price: 300,
         image: "./assets/product-ultra-bee-brake.svg",
         badge: "BRAKE"
+    },
+    {
+        id: 10,
+        name: "Black Pro Taper Grip",
+        category: "cockpit",
+        categoryLabel: "Cockpit",
+        description: "Black Pro Taper-style grip for improved control, comfort and grip on your handlebar setup.",
+        price: 59,
+        image: "./assets/product-pro-taper-black-grip.svg",
+        badge: "COCKPIT"
     }
 ];
 
