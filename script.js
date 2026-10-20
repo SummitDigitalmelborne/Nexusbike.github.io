@@ -1,4 +1,4 @@
-const ORDER_EMAIL = "hayden.ireland24@icloud.com";
+const ORDER_EMAIL = "nexusbike@tutamail.com";
 const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
 
 const products = [
