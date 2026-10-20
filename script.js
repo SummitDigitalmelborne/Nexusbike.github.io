@@ -1,5 +1,5 @@
-const ORDER_EMAIL = "nexusbike@tutamail.com";
-const ORDER_API_URL = "/api/orders";
+const ORDER_EMAIL = "hayden.ireland24@icloud.com";
+const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
 
 const products = [
     {
@@ -458,7 +458,7 @@ document.addEventListener("keydown", event => {
     }
 });
 
-/* Checkout using backend API */
+/* Checkout using FormSubmit (static hosting compatible) */
 checkoutForm?.addEventListener("submit", async event => {
     event.preventDefault();
 
@@ -474,18 +474,32 @@ checkoutForm?.addEventListener("submit", async event => {
     const phone = $("order-phone")?.value.trim() || "";
     const address = $("order-address")?.value.trim() || "";
 
-    const payload = {
-        customer: {
-            name,
-            email,
-            phone,
-            address
-        },
-        items: [...cart.entries()].map(([id, quantity]) => ({
-            id,
-            quantity
-        }))
-    };
+    const items = [...cart.entries()].map(([id, quantity]) => {
+        const product = productMap.get(id);
+
+        return {
+            name: product.name,
+            price: product.price,
+            quantity,
+            subtotal: product.price * quantity
+        };
+    });
+
+    const total = items.reduce((sum, item) => sum + item.subtotal, 0);
+    const orderSummary = items.map(item =>
+        `${item.name} x ${item.quantity} — ${formatPrice(item.subtotal)}`
+    ).join("\n");
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("address", address);
+    formData.append("order", orderSummary);
+    formData.append("total", formatPrice(total));
+    formData.append("_subject", "New NEXUS BIKE order request");
+    formData.append("_template", "table");
+    formData.append("_captcha", "false");
 
     if (checkoutStatus) {
         checkoutStatus.textContent = "Sending order request...";
@@ -503,17 +517,25 @@ checkoutForm?.addEventListener("submit", async event => {
         const response = await fetch(ORDER_API_URL, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify(payload)
+            body: formData
         });
 
-        const result = await response.json().catch(() => null);
+        const responseText = await response.text();
 
-        if (!response.ok || !result || result.success !== true) {
+        let result;
+        try {
+            result = JSON.parse(responseText);
+        } catch {
             throw new Error(
-                result?.error || "Your order could not be sent. Please try again."
+                "FormSubmit returned an unexpected response. Check your internet connection and try again."
+            );
+        }
+
+        if (!response.ok || result.success === "false" || result.success === false) {
+            throw new Error(
+                result.message || "Your order could not be sent. Please try again."
             );
         }
 
