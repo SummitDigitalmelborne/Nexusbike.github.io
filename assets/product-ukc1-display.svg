@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">UKC1 display</title>
+  <desc id="desc">A digital e-bike display mounted on a handlebar with a bright colour screen.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0d0d10"/>
+      <stop offset="100%" stop-color="#1d2024"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0e1118"/>
+      <stop offset="100%" stop-color="#1b2029"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" x2="1">
+      <stop offset="0%" stop-color="#b9b9b9"/>
+      <stop offset="30%" stop-color="#dadada"/>
+      <stop offset="70%" stop-color="#5a5a5a"/>
+      <stop offset="100%" stop-color="#a8a8a8"/>
+    </linearGradient>
+    <linearGradient id="blackMetal" x1="0" x2="1">
+      <stop offset="0%" stop-color="#171717"/>
+      <stop offset="50%" stop-color="#080808"/>
+      <stop offset="100%" stop-color="#1c1c1c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="#e9e9e9"/>
+
+  <g transform="translate(110 120)">
+    <g>
+      <rect x="45" y="180" width="195" height="90" rx="22" fill="url(#blackMetal)"/>
+      <rect x="215" y="110" width="360" height="200" rx="28" fill="url(#metal)" stroke="#4a4a4a" stroke-width="8"/>
+      <rect x="240" y="135" width="310" height="150" rx="18" fill="url(#screen)"/>
+
+      <circle cx="280" cy="210" r="18" fill="#26d3c1" opacity="0.9"/>
+      <circle cx="390" cy="210" r="18" fill="#a7e8ff" opacity="0.8"/>
+      <circle cx="495" cy="210" r="18" fill="#ff7d5d" opacity="0.9"/>
+
+      <text x="255" y="210" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#dffbff">38</text>
+      <text x="390" y="210" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#dffbff">36.8V</text>
+      <text x="330" y="168" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#ffd2a6">RT SPEED</text>
+      <text x="470" y="168" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#ffd2a6">ASSIST</text>
+      <text x="462" y="214" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#dffbff">2</text>
+      <text x="245" y="252" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#dffbff">23689</text>
+      <text x="400" y="252" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#dffbff">23:68:29</text>
+      <text x="265" y="285" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#dffbff" opacity="0.9">TRIP</text>
+      <text x="430" y="285" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#dffbff" opacity="0.9">POP</text>
+
+      <rect x="196" y="80" width="18" height="110" rx="9" fill="#0a0a0a"/>
+      <rect x="515" y="80" width="18" height="110" rx="9" fill="#0a0a0a"/>
+      <rect x="180" y="345" width="30" height="110" rx="15" fill="#111"/>
+      <rect x="480" y="345" width="30" height="110" rx="15" fill="#111"/>
+    </g>
+
+    <g>
+      <rect x="40" y="360" width="100" height="180" rx="24" fill="url(#blackMetal)"/>
+      <circle cx="55" cy="415" r="18" fill="#1d1d1d"/>
+      <circle cx="120" cy="415" r="18" fill="#1d1d1d"/>
+      <path d="M35 455 Q80 505 125 455" fill="none" stroke="#1d1d1d" stroke-width="10" stroke-linecap="round"/>
+      <path d="M35 490 Q80 535 125 490" fill="none" stroke="#1d1d1d" stroke-width="8" stroke-linecap="round"/>
+    </g>
+
+    <g>
+      <rect x="542" y="350" width="90" height="220" rx="25" fill="#121212"/>
+      <rect x="555" y="370" width="64" height="180" rx="20" fill="#1a1a1a"/>
+      <circle cx="587" cy="415" r="20" fill="#1d1d1d"/>
+      <circle cx="587" cy="470" r="20" fill="#1d1d1d"/>
+      <path d="M570 540 Q587 560 604 540" fill="none" stroke="#1d1d1d" stroke-width="8" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
