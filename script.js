@@ -4,23 +4,83 @@ const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
 const products = [
     {
         id: 1,
-        name: "UKC1 Display",
+        name: "Performance Controller",
         category: "electrical",
         categoryLabel: "Electrical",
-        description: "Colour handlebar display for e-bike conversion builds. Provides a clear readout of speed, assist mode and battery data while riding, with a tidy mounting position for easier viewing.",
-        price: 95,
-        image: "./assets/product-ukc1-display.svg",
-        badge: "DISPLAY"
+        description: "High-output controller for tuned power delivery, smoother throttle response, and dependable electric dirt bike performance.",
+        price: 499,
+        image: "./assets/product-controller.svg",
+        badge: "TOP"
     },
     {
         id: 2,
-        name: "Barlight Bicycle Light Set",
+        name: "Precision Throttle",
+        category: "electrical",
+        categoryLabel: "Electrical",
+        description: "Responsive throttle assembly built for clean power delivery and reliable control in demanding riding conditions.",
+        price: 129,
+        image: "./assets/product-throttle.svg",
+        badge: "NEW"
+    },
+    {
+        id: 3,
+        name: "Lithium Battery",
+        category: "electrical",
+        categoryLabel: "Electrical",
+        description: "High-capacity lithium battery designed to improve range, efficient output, and dependable ride confidence.",
+        price: 899,
+        image: "./assets/product-battery.svg",
+        badge: "PRO"
+    },
+    {
+        id: 4,
+        name: "Battery Bag",
         category: "components",
         categoryLabel: "Components",
-        description: "Mini portable bicycle light set with white LED headlight and red rear safety light. 1-second installation, illumination and warning light, and long-lasting battery life.",
-        price: 5,
-        image: "./assets/product-bicycle-light-set.svg",
-        badge: "NEW"
+        description: "Protective battery storage bag with secure fastening and a clean, practical fit for transport and protection.",
+        price: 79,
+        image: "./assets/product-bag.svg",
+        badge: "SAFE"
+    },
+    {
+        id: 5,
+        name: "Lock-On Grips",
+        category: "components",
+        categoryLabel: "Components",
+        description: "Comfort-focused lock-on grips with secure feel, reduced slip, and durable construction for everyday riding.",
+        price: 49,
+        image: "./assets/product-pro-taper-black-grip.svg",
+        badge: "POPULAR"
+    },
+    {
+        id: 6,
+        name: "Racing Handlebars",
+        category: "cockpit",
+        categoryLabel: "Cockpit",
+        description: "Lightweight racing handlebars for improved leverage, sharper steering feel, and a more aggressive riding position.",
+        price: 289,
+        image: "./assets/product-handles.svg",
+        badge: "RACE"
+    },
+    {
+        id: 7,
+        name: "CNC Foot Pegs",
+        category: "components",
+        categoryLabel: "Components",
+        description: "Machined foot pegs designed for grip, durability and confidence across rougher terrain and faster runs.",
+        price: 149,
+        image: "./assets/product-footpegs.svg",
+        badge: "GRIP"
+    },
+    {
+        id: 8,
+        name: "Rear Dropouts",
+        category: "components",
+        categoryLabel: "Components",
+        description: "Heavy-duty rear dropouts built for a more stable rear end and reliable fitment for upgraded builds.",
+        price: 259,
+        image: "./assets/product-dropouts.svg",
+        badge: "CORE"
     }
 ];
 
