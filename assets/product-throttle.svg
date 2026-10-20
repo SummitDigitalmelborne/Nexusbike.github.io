@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="title desc">
+  <title id="title">Precision throttle</title>
+  <desc id="desc">Stylized illustration of a performance throttle control.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#121417"/>
+      <stop offset="100%" stop-color="#0c0d10"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ff5a5a"/>
+      <stop offset="100%" stop-color="#d51f2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="720" fill="url(#bg)"/>
+  <circle cx="650" cy="200" r="110" fill="#181b1f" opacity="0.9"/>
+  <circle cx="650" cy="200" r="68" fill="url(#accent)" opacity="0.18"/>
+  <g transform="translate(90 90)">
+    <path d="M140 410 C170 300, 260 220, 368 220 C452 220, 530 280, 560 350 L606 350 L606 528 L118 528 L118 350 L140 410 Z" fill="#171a1d" stroke="#d8d8d8" stroke-width="6"/>
+    <path d="M180 378 L520 378" stroke="#ececec" stroke-width="10" stroke-linecap="round"/>
+    <path d="M208 300 Q310 193 420 300" fill="none" stroke="#ff4a4a" stroke-width="14" stroke-linecap="round"/>
+    <path d="M272 336 L370 275" stroke="#d9d9d9" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="340" cy="142" r="50" fill="#12161a" stroke="#f0f0f0" stroke-width="8"/>
+    <path d="M340 72 L340 212 M272 142 L408 142" stroke="#f0f0f0" stroke-width="8" stroke-linecap="round"/>
+    <path d="M272 142 L188 142" stroke="#ff4a4a" stroke-width="8" stroke-linecap="round"/>
+    <rect x="20" y="62" width="90" height="46" rx="10" fill="url(#accent)"/>
+    <text x="65" y="92" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700">THRT</text>
+  </g>
+</svg>

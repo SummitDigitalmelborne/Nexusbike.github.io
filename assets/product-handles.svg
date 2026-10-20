@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="title desc">
+  <title id="title">Racing handlebars</title>
+  <desc id="desc">Stylized racing handlebar accessory artwork.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#121417"/>
+      <stop offset="100%" stop-color="#0d1013"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ff4d4d"/>
+      <stop offset="100%" stop-color="#dc1d2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="720" fill="url(#bg)"/>
+  <circle cx="624" cy="170" r="110" fill="#181b1f" opacity="0.9"/>
+  <circle cx="624" cy="170" r="72" fill="url(#accent)" opacity="0.18"/>
+  <g transform="translate(95 90)">
+    <path d="M110 380 L485 380" stroke="#efefef" stroke-width="16" stroke-linecap="round"/>
+    <path d="M220 380 L170 280 L140 200" stroke="#d9d9d9" stroke-width="12" stroke-linecap="round"/>
+    <path d="M470 380 L520 280 L550 200" stroke="#d9d9d9" stroke-width="12" stroke-linecap="round"/>
+    <path d="M170 200 C230 130, 320 90, 440 120" fill="none" stroke="#ff4a4a" stroke-width="14" stroke-linecap="round"/>
+    <path d="M120 200 Q195 150 240 140" fill="none" stroke="#dddddd" stroke-width="9" stroke-linecap="round"/>
+    <path d="M460 190 Q520 150 560 140" fill="none" stroke="#dddddd" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="280" cy="415" r="64" fill="#151a1e" stroke="#e3e3e3" stroke-width="8"/>
+    <path d="M294 340 L328 250" stroke="#f1f1f1" stroke-width="10" stroke-linecap="round"/>
+    <path d="M298 415 L468 415" stroke="#ff4d4d" stroke-width="10" stroke-linecap="round"/>
+    <rect x="0" y="0" width="112" height="52" rx="12" fill="url(#accent)"/>
+    <text x="56" y="34" text-anchor="middle" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700">BAR</text>
+  </g>
+</svg>

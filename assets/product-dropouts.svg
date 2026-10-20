@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="title desc">
+  <title id="title">Rear dropouts</title>
+  <desc id="desc">Stylized rear dropout part illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#121417"/>
+      <stop offset="100%" stop-color="#0d0f12"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ff5151"/>
+      <stop offset="100%" stop-color="#d71423"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="720" fill="url(#bg)"/>
+  <circle cx="620" cy="170" r="120" fill="#191d20" opacity="0.9"/>
+  <circle cx="620" cy="170" r="76" fill="url(#accent)" opacity="0.18"/>
+  <g transform="translate(100 120)">
+    <path d="M220 110 L520 110 L570 230 L520 350 L200 350 L160 230 Z" fill="#171b1e" stroke="#dfe0e1" stroke-width="7"/>
+    <path d="M250 140 L370 140 L420 230 L370 320 L250 320 L200 230 Z" fill="#101417" stroke="#ff4d4d" stroke-width="7"/>
+    <path d="M200 230 L60 230" stroke="#efefef" stroke-width="12" stroke-linecap="round"/>
+    <path d="M420 230 L590 230" stroke="#efefef" stroke-width="12" stroke-linecap="round"/>
+    <path d="M290 320 L290 450" stroke="#efefef" stroke-width="12" stroke-linecap="round"/>
+    <path d="M330 320 L330 450" stroke="#efefef" stroke-width="12" stroke-linecap="round"/>
+    <path d="M120 200 L120 90" stroke="#efefef" stroke-width="10" stroke-linecap="round"/>
+    <path d="M500 200 L500 90" stroke="#efefef" stroke-width="10" stroke-linecap="round"/>
+    <rect x="0" y="0" width="112" height="52" rx="12" fill="url(#accent)"/>
+    <text x="56" y="34" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700">DROP</text>
+  </g>
+</svg>

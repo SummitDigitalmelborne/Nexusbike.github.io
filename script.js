@@ -9,7 +9,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "An upgraded controller for compatible electric dirt bikes.",
         price: 499,
-        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80",
+        image: "./assets/product-controller.svg",
         badge: "ELECTRICAL"
     },
     {
@@ -19,7 +19,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "Replacement throttle assembly for compatible builds.",
         price: 129,
-        image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80",
+        image: "./assets/product-throttle.svg",
         badge: "CONTROL"
     },
     {
@@ -29,7 +29,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "Battery replacement options for compatible models.",
         price: 899,
-        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=700&q=80",
+        image: "./assets/product-battery.svg",
         badge: "POWER"
     },
     {
@@ -39,7 +39,7 @@ const products = [
         categoryLabel: "Components",
         description: "Storage for compatible battery setups.",
         price: 79,
-        image: "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=700&q=80",
+        image: "./assets/product-bag.svg",
         badge: "ACCESSORY"
     },
     {
@@ -49,7 +49,7 @@ const products = [
         categoryLabel: "Cockpit",
         description: "Replacement grips for your handlebar setup.",
         price: 49,
-        image: "https://images.unsplash.com/photo-1558980664-10e7170b5df9?auto=format&fit=crop&w=700&q=80",
+        image: "./assets/product-grips.svg",
         badge: "COCKPIT"
     },
     {
@@ -59,7 +59,7 @@ const products = [
         categoryLabel: "Cockpit",
         description: "Handlebar upgrades for compatible electric dirt bikes.",
         price: 289,
-        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80",
+        image: "./assets/product-handles.svg",
         badge: "UPGRADE"
     },
     {
@@ -69,7 +69,7 @@ const products = [
         categoryLabel: "Components",
         description: "Foot peg upgrades for compatible bike models.",
         price: 149,
-        image: "https://images.unsplash.com/photo-1528629297340-d1d466945dc5?auto=format&fit=crop&w=700&q=80",
+        image: "./assets/product-footpegs.svg",
         badge: "HARDWARE"
     },
     {
@@ -79,7 +79,7 @@ const products = [
         categoryLabel: "Components",
         description: "Replacement dropout components for compatible builds.",
         price: 259,
-        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=700&q=80",
+        image: "./assets/product-dropouts.svg",
         badge: "COMPONENTS"
     }
 ];
@@ -91,24 +91,20 @@ let activeCategory = "all";
 let searchTerm = "";
 
 const $ = id => document.getElementById(id);
-
 const productGrid = $("product-grid");
 const productCount = $("product-count");
 const productSearch = $("product-search");
 const emptyState = $("empty-state");
 const filterButtons = [...document.querySelectorAll(".filter-button")];
-
 const cartItems = $("cart-items");
 const cartTotal = $("cart-total");
 const cartButton = $("cart-button");
 const cartOverlay = $("cart-overlay");
 const cartDrawer = $("cart-drawer");
 const closeCartButton = $("close-cart");
-
 const checkoutForm = $("checkout-form");
 const checkoutStatus = $("checkout-status");
 const toast = $("toast");
-
 const productModal = $("product-modal");
 const productModalImage = $("product-modal-image");
 const productModalCategory = $("product-modal-category");
@@ -117,7 +113,6 @@ const productModalDescription = $("product-modal-description");
 const productModalPrice = $("product-modal-price");
 const productModalButton = $("product-modal-button");
 const closeProductModalButton = $("close-product-modal");
-
 const currentYear = $("current-year");
 
 function formatPrice(value) {
@@ -142,57 +137,35 @@ function getFilteredProducts() {
             product.badge
         ].join(" ").toLowerCase();
 
-        return matchesCategory &&
-            (!search || searchableText.includes(search));
+        return matchesCategory && (!search || searchableText.includes(search));
     });
 }
 
 function renderProducts() {
-    if (!productGrid) {
-        console.error("NEXUS BIKE: #product-grid is missing from index.html.");
-        return;
-    }
+    if (!productGrid) return;
 
     const filteredProducts = getFilteredProducts();
 
     productGrid.innerHTML = filteredProducts.map(product => `
-        <article
-            class="product-card"
-            data-product-id="${product.id}"
-            tabindex="0"
-            aria-label="View ${product.name}"
-        >
+        <article class="product-card" data-product-id="${product.id}" tabindex="0" aria-label="View ${product.name}">
             <div class="product-image-wrap">
-                <img
-                    class="product-image"
-                    src="${product.image}"
-                    alt="${product.name}"
-                    loading="lazy"
-                >
+                <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
                 <span class="product-badge">${product.badge}</span>
             </div>
-
             <div class="product-info">
                 <p class="product-category">${product.categoryLabel}</p>
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
-
                 <div class="product-bottom">
                     <span class="product-price">${formatPrice(product.price)}</span>
-                    <button
-                        type="button"
-                        class="add-button"
-                        data-add-product="${product.id}"
-                        aria-label="Add ${product.name} to cart"
-                    >+</button>
+                    <button type="button" class="add-button" data-add-product="${product.id}" aria-label="Add ${product.name} to cart">+</button>
                 </div>
             </div>
         </article>
     `).join("");
 
     if (productCount) {
-        productCount.textContent =
-            `${filteredProducts.length} PRODUCT${filteredProducts.length === 1 ? "" : "S"}`;
+        productCount.textContent = `${filteredProducts.length} PRODUCT${filteredProducts.length === 1 ? "" : "S"}`;
     }
 
     if (emptyState) {
@@ -200,10 +173,7 @@ function renderProducts() {
     }
 
     filterButtons.forEach(button => {
-        button.classList.toggle(
-            "active",
-            button.dataset.category === activeCategory
-        );
+        button.classList.toggle("active", button.dataset.category === activeCategory);
     });
 }
 
@@ -212,12 +182,8 @@ function showToast(message) {
 
     toast.textContent = message;
     toast.classList.add("show");
-
     clearTimeout(showToast.timeoutId);
-
-    showToast.timeoutId = setTimeout(() => {
-        toast.classList.remove("show");
-    }, 2500);
+    showToast.timeoutId = setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
 function openCart() {
@@ -236,21 +202,13 @@ function renderCart() {
     if (!cartItems || !cartTotal) return;
 
     const entries = [...cart.entries()];
-
-    const quantityTotal = entries.reduce(
-        (sum, [, quantity]) => sum + quantity,
-        0
-    );
-
+    const quantityTotal = entries.reduce((sum, [, quantity]) => sum + quantity, 0);
     const subtotal = entries.reduce((sum, [id, quantity]) => {
         const product = productMap.get(id);
         return sum + (product ? product.price * quantity : 0);
     }, 0);
 
-    if ($("cart-count")) {
-        $("cart-count").textContent = String(quantityTotal);
-    }
-
+    if ($("cart-count")) $("cart-count").textContent = String(quantityTotal);
     cartTotal.textContent = formatPrice(subtotal);
 
     if (entries.length === 0) {
@@ -261,41 +219,19 @@ function renderCart() {
     cartItems.innerHTML = entries.map(([id, quantity]) => {
         const product = productMap.get(id);
         if (!product) return "";
-
         return `
             <div class="cart-item">
                 <div>
                     <div class="cart-item-name">${product.name}</div>
                     <div class="cart-item-price">${formatPrice(product.price)} each</div>
-
                     <div class="cart-item-actions">
-                        <button
-                            type="button"
-                            class="quantity-button"
-                            data-quantity-change="${id},-1"
-                            aria-label="Decrease quantity"
-                        >−</button>
-
+                        <button type="button" class="quantity-button" data-quantity-change="${id},-1" aria-label="Decrease quantity">−</button>
                         <span class="quantity-number">${quantity}</span>
-
-                        <button
-                            type="button"
-                            class="quantity-button"
-                            data-quantity-change="${id},1"
-                            aria-label="Increase quantity"
-                        >+</button>
-
-                        <button
-                            type="button"
-                            class="remove-button"
-                            data-remove-product="${id}"
-                        >Remove</button>
+                        <button type="button" class="quantity-button" data-quantity-change="${id},1" aria-label="Increase quantity">+</button>
+                        <button type="button" class="remove-button" data-remove-product="${id}">Remove</button>
                     </div>
                 </div>
-
-                <div class="cart-item-total">
-                    ${formatPrice(product.price * quantity)}
-                </div>
+                <div class="cart-item-total">${formatPrice(product.price * quantity)}</div>
             </div>
         `;
     }).join("");
@@ -303,7 +239,6 @@ function renderCart() {
 
 function addToCart(id) {
     if (!productMap.has(id)) return;
-
     cart.set(id, (cart.get(id) || 0) + 1);
     renderCart();
     openCart();
@@ -312,13 +247,8 @@ function addToCart(id) {
 
 function updateCartQuantity(id, change) {
     const quantity = (cart.get(id) || 0) + change;
-
-    if (quantity <= 0) {
-        cart.delete(id);
-    } else {
-        cart.set(id, quantity);
-    }
-
+    if (quantity <= 0) cart.delete(id);
+    else cart.set(id, quantity);
     renderCart();
 }
 
@@ -329,33 +259,17 @@ function removeFromCart(id) {
 
 function openProductModal(id) {
     const product = productMap.get(id);
-
     if (!product || !productModal) return;
 
     if (productModalImage) {
         productModalImage.src = product.image;
         productModalImage.alt = product.name;
     }
-
-    if (productModalCategory) {
-        productModalCategory.textContent = product.categoryLabel;
-    }
-
-    if (productModalTitle) {
-        productModalTitle.textContent = product.name;
-    }
-
-    if (productModalDescription) {
-        productModalDescription.textContent = product.description;
-    }
-
-    if (productModalPrice) {
-        productModalPrice.textContent = formatPrice(product.price);
-    }
-
-    if (productModalButton) {
-        productModalButton.dataset.productId = String(id);
-    }
+    if (productModalCategory) productModalCategory.textContent = product.categoryLabel;
+    if (productModalTitle) productModalTitle.textContent = product.name;
+    if (productModalDescription) productModalDescription.textContent = product.description;
+    if (productModalPrice) productModalPrice.textContent = formatPrice(product.price);
+    if (productModalButton) productModalButton.dataset.productId = String(id);
 
     productModal.classList.add("open");
     productModal.setAttribute("aria-hidden", "false");
@@ -368,13 +282,11 @@ function closeProductModal() {
     document.body.classList.remove("modal-open");
 }
 
-/* Search */
 productSearch?.addEventListener("input", event => {
     searchTerm = event.target.value;
     renderProducts();
 });
 
-/* Category filters */
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
         activeCategory = button.dataset.category || "all";
@@ -382,10 +294,8 @@ filterButtons.forEach(button => {
     });
 });
 
-/* Product cards and add-to-cart buttons */
 productGrid?.addEventListener("click", event => {
     const addButton = event.target.closest("[data-add-product]");
-
     if (addButton) {
         event.stopPropagation();
         addToCart(Number(addButton.dataset.addProduct));
@@ -393,50 +303,36 @@ productGrid?.addEventListener("click", event => {
     }
 
     const card = event.target.closest("[data-product-id]");
-
-    if (card) {
-        openProductModal(Number(card.dataset.productId));
-    }
+    if (card) openProductModal(Number(card.dataset.productId));
 });
 
 productGrid?.addEventListener("keydown", event => {
     if (event.target.closest("button")) return;
-
     const card = event.target.closest("[data-product-id]");
-
     if (card && (event.key === "Enter" || event.key === " ")) {
         event.preventDefault();
         openProductModal(Number(card.dataset.productId));
     }
 });
 
-/* Cart controls */
 cartButton?.addEventListener("click", openCart);
 closeCartButton?.addEventListener("click", closeCart);
 cartOverlay?.addEventListener("click", closeCart);
 
 cartItems?.addEventListener("click", event => {
     const quantityButton = event.target.closest("[data-quantity-change]");
-
     if (quantityButton) {
-        const [id, change] =
-            quantityButton.dataset.quantityChange.split(",");
-
+        const [id, change] = quantityButton.dataset.quantityChange.split(",");
         updateCartQuantity(Number(id), Number(change));
         return;
     }
 
     const removeButton = event.target.closest("[data-remove-product]");
-
-    if (removeButton) {
-        removeFromCart(Number(removeButton.dataset.removeProduct));
-    }
+    if (removeButton) removeFromCart(Number(removeButton.dataset.removeProduct));
 });
 
-/* Product modal controls */
 productModalButton?.addEventListener("click", () => {
     const id = Number(productModalButton.dataset.productId);
-
     if (id) {
         addToCart(id);
         closeProductModal();
@@ -444,11 +340,8 @@ productModalButton?.addEventListener("click", () => {
 });
 
 closeProductModalButton?.addEventListener("click", closeProductModal);
-
 productModal?.addEventListener("click", event => {
-    if (event.target.closest("[data-close-product-modal]")) {
-        closeProductModal();
-    }
+    if (event.target.closest("[data-close-product-modal]")) closeProductModal();
 });
 
 document.addEventListener("keydown", event => {
@@ -458,14 +351,11 @@ document.addEventListener("keydown", event => {
     }
 });
 
-/* Checkout using FormSubmit (static hosting compatible) */
 checkoutForm?.addEventListener("submit", async event => {
     event.preventDefault();
 
     if (cart.size === 0) {
-        if (checkoutStatus) {
-            checkoutStatus.textContent = "Your cart is empty.";
-        }
+        if (checkoutStatus) checkoutStatus.textContent = "Your cart is empty.";
         return;
     }
 
@@ -476,7 +366,6 @@ checkoutForm?.addEventListener("submit", async event => {
 
     const items = [...cart.entries()].map(([id, quantity]) => {
         const product = productMap.get(id);
-
         return {
             name: product.name,
             price: product.price,
@@ -486,9 +375,7 @@ checkoutForm?.addEventListener("submit", async event => {
     });
 
     const total = items.reduce((sum, item) => sum + item.subtotal, 0);
-    const orderSummary = items.map(item =>
-        `${item.name} x ${item.quantity} — ${formatPrice(item.subtotal)}`
-    ).join("\n");
+    const orderSummary = items.map(item => `${item.name} x ${item.quantity} — ${formatPrice(item.subtotal)}`).join("\n");
 
     const formData = new FormData();
     formData.append("name", name);
@@ -507,7 +394,6 @@ checkoutForm?.addEventListener("submit", async event => {
     }
 
     const submitButton = checkoutForm.querySelector('[type="submit"]');
-
     if (submitButton) {
         submitButton.disabled = true;
         submitButton.textContent = "Sending...";
@@ -516,48 +402,36 @@ checkoutForm?.addEventListener("submit", async event => {
     try {
         const response = await fetch(ORDER_API_URL, {
             method: "POST",
-            headers: {
-                "Accept": "application/json"
-            },
+            headers: { Accept: "application/json" },
             body: formData
         });
 
         const responseText = await response.text();
-
         let result;
         try {
             result = JSON.parse(responseText);
         } catch {
-            throw new Error(
-                "FormSubmit returned an unexpected response. Check your internet connection and try again."
-            );
+            throw new Error("FormSubmit returned an unexpected response. Check your internet connection and try again.");
         }
 
         if (!response.ok || result.success === "false" || result.success === false) {
-            throw new Error(
-                result.message || "Your order could not be sent. Please try again."
-            );
+            throw new Error(result.message || "Your order could not be sent. Please try again.");
         }
 
         if (checkoutStatus) {
-            checkoutStatus.textContent =
-                "Your order request was submitted. Please check your email for confirmation.";
+            checkoutStatus.textContent = "Your order request was submitted. Please check your email for confirmation.";
             checkoutStatus.style.color = "#7ee081";
         }
 
         cart.clear();
         renderCart();
         checkoutForm.reset();
-
     } catch (error) {
         console.error("NEXUS BIKE checkout error:", error);
-
         if (checkoutStatus) {
-            checkoutStatus.textContent =
-                error.message || "Unable to send your order. Please try again.";
+            checkoutStatus.textContent = error.message || "Unable to send your order. Please try again.";
             checkoutStatus.style.color = "#ff8b8b";
         }
-
     } finally {
         if (submitButton) {
             submitButton.disabled = false;
@@ -566,10 +440,6 @@ checkoutForm?.addEventListener("submit", async event => {
     }
 });
 
-/* Initialise the shop */
-if (currentYear) {
-    currentYear.textContent = new Date().getFullYear();
-}
-
+if (currentYear) currentYear.textContent = new Date().getFullYear();
 renderProducts();
 renderCart();

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Nexus Bike hero artwork</title>
+  <desc id="desc">Stylized electric bike rider artwork in a dark red performance theme.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b0b0d"/>
+      <stop offset="52%" stop-color="#161519"/>
+      <stop offset="100%" stop-color="#0d0d10"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ff3d3d"/>
+      <stop offset="100%" stop-color="#cf1d28"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="980" cy="250" r="170" fill="#1e1e22" opacity="0.9"/>
+  <circle cx="980" cy="250" r="120" fill="url(#accent)" opacity="0.22"/>
+  <g opacity="0.28" stroke="#ff4a4a" stroke-width="2" fill="none">
+    <path d="M80 760 C220 610, 360 560, 520 610 S860 710, 1100 610"/>
+    <path d="M150 840 H1070"/>
+  </g>
+  <g transform="translate(130 120)">
+    <circle cx="260" cy="520" r="120" fill="none" stroke="#b1b1b1" stroke-width="18"/>
+    <circle cx="750" cy="520" r="120" fill="none" stroke="#b1b1b1" stroke-width="18"/>
+    <circle cx="260" cy="520" r="48" fill="#1b1d20" stroke="#dc3b43" stroke-width="10"/>
+    <circle cx="750" cy="520" r="48" fill="#1b1d20" stroke="#dc3b43" stroke-width="10"/>
+    <path d="M280 520 L420 410 L550 410 L650 520 L490 520 L420 470 L340 520 Z" fill="#181b1d" stroke="#d1d1d1" stroke-width="8" opacity="0.95"/>
+    <path d="M420 410 L470 312 L575 312 L650 410" fill="none" stroke="#db4b4d" stroke-width="14" stroke-linecap="round"/>
+    <path d="M575 312 L610 250 L700 250" fill="none" stroke="#f4f4f4" stroke-width="12" stroke-linecap="round"/>
+    <path d="M520 410 L430 520" stroke="#e9e9e9" stroke-width="10" stroke-linecap="round"/>
+    <path d="M618 410 L750 520" stroke="#e9e9e9" stroke-width="10" stroke-linecap="round"/>
+    <path d="M420 470 L340 520" stroke="#ff4a4a" stroke-width="16" stroke-linecap="round"/>
+    <rect x="465" y="178" rx="10" width="120" height="56" fill="#14181d" stroke="#efefef" stroke-width="6"/>
+    <rect x="488" y="144" rx="8" width="74" height="42" fill="#f0f0f0" opacity="0.12"/>
+    <path d="M575 310 L820 305 L885 445 L800 445 L718 390 L640 390 L575 360 Z" fill="#1a1d21" stroke="#d1d1d1" stroke-width="7"/>
+    <path d="M812 304 L874 226 L946 226" fill="none" stroke="#db4b4d" stroke-width="12" stroke-linecap="round"/>
+    <path d="M820 300 L770 248" stroke="#e7e7e7" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="905" cy="445" r="34" fill="#181a1d" stroke="#b7b7b7" stroke-width="10"/>
+    <circle cx="905" cy="445" r="15" fill="#ff4a4a" opacity="0.9"/>
+    <path d="M340 520 L240 565" stroke="#f0f0f0" stroke-width="10" stroke-linecap="round"/>
+    <path d="M262 630 L404 633" stroke="#ff4a4a" stroke-width="10" stroke-linecap="round"/>
+    <path d="M615 630 L762 633" stroke="#ff4a4a" stroke-width="10" stroke-linecap="round"/>
+    <g transform="translate(180 135)">
+      <circle cx="0" cy="45" r="32" fill="#e9e9e9" opacity="0.95"/>
+      <path d="M-12 61 L26 16 L32 16 L-3 61 Z" fill="#ff4a4a"/>
+      <circle cx="28" cy="54" r="10" fill="#ff4a4a"/>
+      <path d="M-18 25 L28 -12 L48 -12 L12 25 Z" fill="#151920" opacity="0.9"/>
+    </g>
+  </g>
+  <g opacity="0.9">
+    <text x="90" y="170" fill="#ff4a4a" font-family="Arial,Helvetica,sans-serif" font-size="30" letter-spacing="7" font-weight="700">NEXUS BIKE</text>
+    <text x="90" y="215" fill="#f2f2f2" font-family="Arial,Helvetica,sans-serif" font-size="64" font-weight="800" letter-spacing="-2">BUILT FOR THE RIDE</text>
+  </g>
+</svg>

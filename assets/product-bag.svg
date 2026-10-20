@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="title desc">
+  <title id="title">Battery bag</title>
+  <desc id="desc">Stylized battery bag accessory illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#121416"/>
+      <stop offset="100%" stop-color="#0d0f12"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ff504b"/>
+      <stop offset="100%" stop-color="#d31522"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="720" fill="url(#bg)"/>
+  <circle cx="630" cy="170" r="120" fill="#181d20" opacity="0.9"/>
+  <circle cx="630" cy="170" r="76" fill="url(#accent)" opacity="0.18"/>
+  <g transform="translate(100 120)">
+    <path d="M120 260 L220 170 H420 L520 260 V430 C520 470 486 500 440 500 H200 C154 500 120 470 120 430 Z" fill="#191d22" stroke="#e3e3e3" stroke-width="7"/>
+    <path d="M200 260 L200 185 H430 L430 260" fill="none" stroke="#ff4a4a" stroke-width="12" stroke-linecap="round"/>
+    <path d="M150 315 H490" stroke="#efefef" stroke-width="11" stroke-linecap="round"/>
+    <path d="M150 370 H490" stroke="#efefef" stroke-width="11" stroke-linecap="round"/>
+    <path d="M150 425 H490" stroke="#efefef" stroke-width="11" stroke-linecap="round"/>
+    <rect x="0" y="72" width="98" height="48" rx="10" fill="url(#accent)"/>
+    <text x="49" y="103" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700">BAG</text>
+  </g>
+</svg>
