@@ -107,10 +107,20 @@ const products = [
         name: "UKC1 Display",
         category: "electrical",
         categoryLabel: "Electrical",
-        description: "Colour handlebar display for e-bike conversion builds. Provides a clear readout of speed, assist mode and battery data while riding, with a tidy mounting position for easier visibility.",
+        description: "Colour handlebar display for e-bike conversion builds. Provides a clear readout of speed, assist mode and battery data while riding, with a tidy mounting position for easier viewing.",
         price: 95,
         image: "./assets/product-ukc1-display.svg",
         badge: "DISPLAY"
+    },
+    {
+        id: 12,
+        name: "Barlight Bicycle Light Set",
+        category: "components",
+        categoryLabel: "Components",
+        description: "Mini portable bicycle light set with white LED headlight and red rear safety light. Quick 1-second installation, illumination plus warning light, and long-lasting battery life.",
+        price: 5,
+        image: "./assets/product-bicycle-light-set.svg",
+        badge: "NEW"
     }
 ];
 
