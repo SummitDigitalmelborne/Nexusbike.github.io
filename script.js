@@ -101,6 +101,16 @@ const products = [
         price: 5,
         image: "./assets/product-pro-taper-black-grip.svg",
         badge: "COCKPIT"
+    },
+    {
+        id: 11,
+        name: "UKC1 Display",
+        category: "electrical",
+        categoryLabel: "Electrical",
+        description: "Colour handlebar display for e-bike conversion builds. Provides a clear readout of speed, assist mode and battery data while riding, with a tidy mounting position for easier visibility.",
+        price: 95,
+        image: "./assets/product-ukc1-display.svg",
+        badge: "DISPLAY"
     }
 ];
 
