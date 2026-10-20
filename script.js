@@ -1,5 +1,6 @@
 const ORDER_EMAIL = "nexusbike@tutamail.com";
 const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
+const resolveAssetUrl = assetPath => new URL(assetPath, window.location.href).toString();
 
 const products = [
     {
@@ -9,7 +10,7 @@ const products = [
         categoryLabel: "Components",
         description: "A product-style reference image showing the first Nexus Bike build layout.",
         price: 99,
-        image: "./Screenshot%202026-10-20%20160148.png",
+        image: resolveAssetUrl("Screenshot%202026-10-20%20160148.png"),
         badge: "SETUP"
     },
     {
@@ -19,7 +20,7 @@ const products = [
         categoryLabel: "Components",
         description: "A product-style reference image showing the second Nexus Bike build layout.",
         price: 129,
-        image: "./Screenshot%202026-10-20%20160657.png",
+        image: resolveAssetUrl("Screenshot%202026-10-20%20160657.png"),
         badge: "SETUP"
     },
     {
@@ -29,7 +30,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "A product-style reference image showing the third Nexus Bike build layout.",
         price: 149,
-        image: "./Screenshot%202026-10-20%20161649.png",
+        image: resolveAssetUrl("Screenshot%202026-10-20%20161649.png"),
         badge: "SETUP"
     },
     {
@@ -39,7 +40,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "A product-style reference image showing the fourth Nexus Bike build layout.",
         price: 179,
-        image: "./Screenshot%202026-10-20%20162719.png",
+        image: resolveAssetUrl("Screenshot%202026-10-20%20162719.png"),
         badge: "SETUP"
     }
 ];
