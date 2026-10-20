@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Black Pro Taper Grip</title>
+  <desc id="desc">A stylized black motorcycle grip with a textured pattern and a rubber finish.</desc>
+  <defs>
+    <linearGradient id="blackGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0d0d0d"/>
+      <stop offset="30%" stop-color="#1a1a1a"/>
+      <stop offset="60%" stop-color="#0c0c0c"/>
+      <stop offset="100%" stop-color="#070707"/>
+    </linearGradient>
+    <linearGradient id="rimGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#4b4b4b"/>
+      <stop offset="50%" stop-color="#a7a7a7"/>
+      <stop offset="100%" stop-color="#4f4f4f"/>
+    </linearGradient>
+    <pattern id="mesh" width="28" height="28" patternUnits="userSpaceOnUse">
+      <rect width="28" height="28" fill="none"/>
+      <circle cx="4" cy="4" r="3" fill="#353535" opacity="0.85"/>
+      <circle cx="18" cy="8" r="3" fill="#2a2a2a" opacity="0.8"/>
+      <circle cx="12" cy="19" r="3" fill="#3a3a3a" opacity="0.9"/>
+      <circle cx="22" cy="22" r="2.5" fill="#131313" opacity="0.8"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="800" fill="#efefef"/>
+
+  <g transform="translate(110 95)">
+    <g>
+      <rect x="70" y="65" width="420" height="600" rx="70" fill="url(#blackGrad)"/>
+      <rect x="90" y="90" width="380" height="550" rx="52" fill="url(#mesh)" opacity="0.9"/>
+      <rect x="100" y="105" width="360" height="520" rx="48" fill="none" stroke="#1e1e1e" stroke-width="8"/>
+
+      <g opacity="0.9">
+        <rect x="85" y="125" width="350" height="10" rx="5" fill="url(#rimGrad)"/>
+        <rect x="85" y="230" width="350" height="10" rx="5" fill="url(#rimGrad)"/>
+        <rect x="85" y="335" width="350" height="10" rx="5" fill="url(#rimGrad)"/>
+        <rect x="85" y="440" width="350" height="10" rx="5" fill="url(#rimGrad)"/>
+        <rect x="85" y="545" width="350" height="10" rx="5" fill="url(#rimGrad)"/>
+      </g>
+
+      <g>
+        <ellipse cx="280" cy="80" rx="55" ry="22" fill="#1a1a1a"/>
+        <ellipse cx="280" cy="635" rx="55" ry="22" fill="#1a1a1a"/>
+      </g>
+
+      <g>
+        <rect x="115" y="75" width="330" height="26" rx="12" fill="#111" opacity="0.8"/>
+        <rect x="115" y="615" width="330" height="26" rx="12" fill="#111" opacity="0.8"/>
+      </g>
+    </g>
+
+    <g transform="translate(0 25)">
+      <rect x="40" y="160" width="56" height="250" rx="18" fill="#101010"/>
+      <rect x="450" y="160" width="56" height="250" rx="18" fill="#101010"/>
+    </g>
+  </g>
+</svg>
