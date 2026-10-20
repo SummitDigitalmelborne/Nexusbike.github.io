@@ -1,7 +1,6 @@
 // NEXUS BIKE — STORE FUNCTIONALITY
-// Checkout uses FormSubmit. No custom backend required.
 
-const ORDER_EMAIL = "hayden.ireland24@icloud.com";
+const ORDER_API_URL = "/api/orders";
 
 const products = [
     {
@@ -31,7 +30,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "Battery replacement options for compatible models.",
         price: 899,
-        image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=700&q=80",
+        image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7auto=format&fit=crop&w=700&q=80",
         badge: "POWER"
     },
     {
@@ -496,71 +495,48 @@ async function submitOrder(event) {
 
     const formData = new FormData(checkoutForm);
 
-    // Ignore automated spam submissions.
     if (String(formData.get("website") || "").trim() !== "") {
         checkoutStatus.textContent = "Unable to submit this order.";
         return;
     }
 
-    const customerName = String(formData.get("name") || "").trim();
-    const customerEmail = String(formData.get("email") || "").trim();
-    const customerPhone = String(formData.get("phone") || "").trim();
-    const customerAddress = String(formData.get("address") || "").trim();
+    const customer = {
+        name: String(formData.get("name") || "").trim(),
+        email: String(formData.get("email") || "").trim(),
+        phone: String(formData.get("phone") || "").trim(),
+        address: String(formData.get("address") || "").trim()
+    };
 
-    if (!customerName || !customerEmail || !customerPhone || !customerAddress) {
+    if (!customer.name || !customer.email || !customer.phone || !customer.address) {
         checkoutStatus.textContent = "Please complete all required fields.";
         return;
     }
-
-    const orderLines = cart.map(item => {
-        const product = products.find(entry => entry.id === item.id);
-
-        return product
-            ? `${product.name} x ${item.quantity} — ${formatPrice(product.price * item.quantity)}`
-            : "";
-    }).filter(Boolean);
-
-    const orderTotal = getCartSubtotal();
 
     const originalButtonContent = checkoutButton.innerHTML;
     checkoutButton.disabled = true;
     checkoutButton.textContent = "SENDING ORDER...";
     checkoutStatus.textContent = "Submitting your order request...";
 
-    const payload = {
-        _subject: `NEXUS BIKE Order Request — ${customerName}`,
-        _template: "table",
-        _captcha: "true",
-        name: customerName,
-        email: customerEmail,
-        phone: customerPhone,
-        delivery_address: customerAddress,
-        order_items: orderLines.join("\n"),
-        subtotal: formatPrice(orderTotal),
-        shipping: "To be confirmed by NEXUS BIKE",
-        total: `${formatPrice(orderTotal)} before shipping`,
-        payment_note: "This is an order request, not a completed payment. Contact the customer to confirm availability, shipping and payment."
-    };
-
     try {
-        const response = await fetch(
-            `https://formsubmit.co/ajax/${ORDER_EMAIL}`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(payload)
-            }
-        );
+        const response = await fetch(ORDER_API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                customer,
+                items: cart.map(item => ({
+                    id: Number(item.id),
+                    quantity: Number(item.quantity)
+                }))
+            })
+        });
 
-        const result = await response.json();
+        const result = await response.json().catch(() => ({}));
 
-        if (!response.ok || result.success === "false" || result.success === false) {
-            throw new Error(
-                result.message || "The order could not be submitted. Please try again."
-            );
+        if (!response.ok || result.success !== true) {
+            throw new Error(result.error || "The order could not be submitted. Please try again.");
         }
 
         cart = [];
@@ -578,7 +554,7 @@ async function submitOrder(event) {
         checkoutStatus.textContent =
             "We couldn't send your request. Please try again or contact NEXUS BIKE directly.";
 
-        showToast("Order submission failed.");
+        showToast(error instanceof Error ? error.message : "Order submission failed.");
     } finally {
         checkoutButton.innerHTML = originalButtonContent;
         renderCart();
