@@ -1,6 +1,9 @@
+```javascript
 // NEXUS BIKE — STORE FUNCTIONALITY
+// Orders are submitted through FormSubmit.
 
-const ORDER_API_URL = "/api/orders";
+const ORDER_EMAIL = "nexusbike@tutamail.com";
+const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
 
 const products = [
     {
@@ -30,7 +33,7 @@ const products = [
         categoryLabel: "Electrical",
         description: "Battery replacement options for compatible models.",
         price: 899,
-        image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7auto=format&fit=crop&w=700&q=80",
+        image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=700&q=80",
         badge: "POWER"
     },
     {
@@ -495,6 +498,7 @@ async function submitOrder(event) {
 
     const formData = new FormData(checkoutForm);
 
+    // Existing hidden honeypot field to discourage spam.
     if (String(formData.get("website") || "").trim() !== "") {
         checkoutStatus.textContent = "Unable to submit this order.";
         return;
@@ -512,7 +516,41 @@ async function submitOrder(event) {
         return;
     }
 
+    const orderedItems = cart.map(item => {
+        const product = products.find(entry => entry.id === item.id);
+
+        return {
+            name: product.name,
+            quantity: item.quantity,
+            unitPrice: product.price,
+            lineTotal: product.price * item.quantity
+        };
+    });
+
+    const total = orderedItems.reduce(
+        (sum, item) => sum + item.lineTotal,
+        0
+    );
+
+    const orderDetails = orderedItems.map(item =>
+        `${item.name} | Quantity: ${item.quantity} | Unit price: ${formatPrice(item.unitPrice)} | Subtotal: ${formatPrice(item.lineTotal)}`
+    ).join("\n");
+
+    const payload = new FormData();
+
+    payload.append("_subject", `NEXUS BIKE — New order from ${customer.name}`);
+    payload.append("_template", "table");
+    payload.append("_captcha", "true");
+    payload.append("Customer name", customer.name);
+    payload.append("Customer email", customer.email);
+    payload.append("Customer phone", customer.phone);
+    payload.append("Delivery address", customer.address);
+    payload.append("Items ordered", orderDetails);
+    payload.append("Total order value (AUD)", formatPrice(total));
+    payload.append("_replyto", customer.email);
+
     const originalButtonContent = checkoutButton.innerHTML;
+
     checkoutButton.disabled = true;
     checkoutButton.textContent = "SENDING ORDER...";
     checkoutStatus.textContent = "Submitting your order request...";
@@ -520,23 +558,19 @@ async function submitOrder(event) {
     try {
         const response = await fetch(ORDER_API_URL, {
             method: "POST",
+            body: payload,
             headers: {
-                "Content-Type": "application/json",
                 "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                customer,
-                items: cart.map(item => ({
-                    id: Number(item.id),
-                    quantity: Number(item.quantity)
-                }))
-            })
+            }
         });
 
         const result = await response.json().catch(() => ({}));
 
-        if (!response.ok || result.success !== true) {
-            throw new Error(result.error || "The order could not be submitted. Please try again.");
+        if (!response.ok || String(result.success).toLowerCase() !== "true") {
+            throw new Error(
+                result.message ||
+                "The order could not be submitted. Please try again."
+            );
         }
 
         cart = [];
@@ -554,7 +588,11 @@ async function submitOrder(event) {
         checkoutStatus.textContent =
             "We couldn't send your request. Please try again or contact NEXUS BIKE directly.";
 
-        showToast(error instanceof Error ? error.message : "Order submission failed.");
+        showToast(
+            error instanceof Error
+                ? error.message
+                : "Order submission failed."
+        );
     } finally {
         checkoutButton.innerHTML = originalButtonContent;
         renderCart();
@@ -571,3 +609,4 @@ function showToast(message) {
         toast.classList.remove("show");
     }, 2600);
 }
+```
