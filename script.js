@@ -1,3 +1,6 @@
+const ORDER_EMAIL = "nexusbike@tutamail.com";
+const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
+
 const products = [
     {
         id: 1,
@@ -83,32 +86,39 @@ const products = [
 
 const productMap = new Map(products.map(product => [product.id, product]));
 const cart = new Map();
+
 let activeCategory = "all";
 let searchTerm = "";
 
-const productGrid = document.getElementById("product-grid");
-const productCount = document.getElementById("product-count");
-const productSearch = document.getElementById("product-search");
-const emptyState = document.getElementById("empty-state");
+const $ = id => document.getElementById(id);
+
+const productGrid = $("product-grid");
+const productCount = $("product-count");
+const productSearch = $("product-search");
+const emptyState = $("empty-state");
 const filterButtons = [...document.querySelectorAll(".filter-button")];
-const cartItems = document.getElementById("cart-items");
-const cartTotal = document.getElementById("cart-total");
-const cartButton = document.getElementById("cart-button");
-const cartOverlay = document.getElementById("cart-overlay");
-const cartDrawer = document.getElementById("cart-drawer");
-const closeCartButton = document.getElementById("close-cart");
-const checkoutForm = document.getElementById("checkout-form");
-const checkoutStatus = document.getElementById("checkout-status");
-const toast = document.getElementById("toast");
-const productModal = document.getElementById("product-modal");
-const productModalImage = document.getElementById("product-modal-image");
-const productModalCategory = document.getElementById("product-modal-category");
-const productModalTitle = document.getElementById("product-modal-title");
-const productModalDescription = document.getElementById("product-modal-description");
-const productModalPrice = document.getElementById("product-modal-price");
-const productModalButton = document.getElementById("product-modal-button");
-const closeProductModalButton = document.getElementById("close-product-modal");
-const currentYear = document.getElementById("current-year");
+
+const cartItems = $("cart-items");
+const cartTotal = $("cart-total");
+const cartButton = $("cart-button");
+const cartOverlay = $("cart-overlay");
+const cartDrawer = $("cart-drawer");
+const closeCartButton = $("close-cart");
+
+const checkoutForm = $("checkout-form");
+const checkoutStatus = $("checkout-status");
+const toast = $("toast");
+
+const productModal = $("product-modal");
+const productModalImage = $("product-modal-image");
+const productModalCategory = $("product-modal-category");
+const productModalTitle = $("product-modal-title");
+const productModalDescription = $("product-modal-description");
+const productModalPrice = $("product-modal-price");
+const productModalButton = $("product-modal-button");
+const closeProductModalButton = $("close-product-modal");
+
+const currentYear = $("current-year");
 
 function formatPrice(value) {
     return new Intl.NumberFormat("en-AU", {
@@ -118,151 +128,234 @@ function formatPrice(value) {
 }
 
 function getFilteredProducts() {
+    const search = searchTerm.trim().toLowerCase();
+
     return products.filter(product => {
-        const matchesCategory = activeCategory === "all" || product.category === activeCategory;
-        const lowerSearch = searchTerm.trim().toLowerCase();
-        const matchesSearch = !lowerSearch || [
+        const matchesCategory =
+            activeCategory === "all" ||
+            product.category === activeCategory;
+
+        const searchableText = [
             product.name,
             product.categoryLabel,
             product.description,
             product.badge
-        ].join(" ").toLowerCase().includes(lowerSearch);
+        ].join(" ").toLowerCase();
 
-        return matchesCategory && matchesSearch;
+        return matchesCategory &&
+            (!search || searchableText.includes(search));
     });
 }
 
 function renderProducts() {
+    if (!productGrid) {
+        console.error("NEXUS BIKE: #product-grid is missing from index.html.");
+        return;
+    }
+
     const filteredProducts = getFilteredProducts();
 
     productGrid.innerHTML = filteredProducts.map(product => `
-        <article class="product-card" data-product-id="${product.id}" tabindex="0" aria-label="${product.name}">
+        <article
+            class="product-card"
+            data-product-id="${product.id}"
+            tabindex="0"
+            aria-label="View ${product.name}"
+        >
             <div class="product-image-wrap">
-                <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
+                <img
+                    class="product-image"
+                    src="${product.image}"
+                    alt="${product.name}"
+                    loading="lazy"
+                >
                 <span class="product-badge">${product.badge}</span>
             </div>
+
             <div class="product-info">
                 <p class="product-category">${product.categoryLabel}</p>
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
+
                 <div class="product-bottom">
                     <span class="product-price">${formatPrice(product.price)}</span>
-                    <button type="button" class="add-button" data-add-product="${product.id}" aria-label="Add ${product.name} to cart">+</button>
+                    <button
+                        type="button"
+                        class="add-button"
+                        data-add-product="${product.id}"
+                        aria-label="Add ${product.name} to cart"
+                    >+</button>
                 </div>
             </div>
         </article>
     `).join("");
 
-    productCount.textContent = `${filteredProducts.length} PRODUCT${filteredProducts.length === 1 ? "" : "S"}`;
-    emptyState.hidden = filteredProducts.length !== 0;
+    if (productCount) {
+        productCount.textContent =
+            `${filteredProducts.length} PRODUCT${filteredProducts.length === 1 ? "" : "S"}`;
+    }
+
+    if (emptyState) {
+        emptyState.hidden = filteredProducts.length !== 0;
+    }
 
     filterButtons.forEach(button => {
-        const isActive = button.dataset.category === activeCategory;
-        button.classList.toggle("active", isActive);
+        button.classList.toggle(
+            "active",
+            button.dataset.category === activeCategory
+        );
     });
 }
 
 function showToast(message) {
+    if (!toast) return;
+
     toast.textContent = message;
     toast.classList.add("show");
 
-    window.clearTimeout(showToast.timeoutId);
-    showToast.timeoutId = window.setTimeout(() => {
+    clearTimeout(showToast.timeoutId);
+
+    showToast.timeoutId = setTimeout(() => {
         toast.classList.remove("show");
-    }, 2200);
+    }, 2500);
 }
 
 function openCart() {
-    cartDrawer.classList.add("open");
-    cartOverlay.classList.add("open");
+    cartDrawer?.classList.add("open");
+    cartOverlay?.classList.add("open");
     document.body.classList.add("cart-open");
 }
 
 function closeCart() {
-    cartDrawer.classList.remove("open");
-    cartOverlay.classList.remove("open");
+    cartDrawer?.classList.remove("open");
+    cartOverlay?.classList.remove("open");
     document.body.classList.remove("cart-open");
 }
 
 function renderCart() {
-    const cartEntries = [...cart.entries()];
-    const cartItemCount = cartEntries.reduce((total, [, quantity]) => total + quantity, 0);
-    const subtotal = cartEntries.reduce((total, [productId, quantity]) => {
-        const product = productMap.get(productId);
-        return total + (product ? product.price * quantity : 0);
+    if (!cartItems || !cartTotal) return;
+
+    const entries = [...cart.entries()];
+
+    const quantityTotal = entries.reduce(
+        (sum, [, quantity]) => sum + quantity,
+        0
+    );
+
+    const subtotal = entries.reduce((sum, [id, quantity]) => {
+        const product = productMap.get(id);
+        return sum + (product ? product.price * quantity : 0);
     }, 0);
 
-    document.getElementById("cart-count").textContent = String(cartItemCount);
+    if ($("cart-count")) {
+        $("cart-count").textContent = String(quantityTotal);
+    }
+
     cartTotal.textContent = formatPrice(subtotal);
 
-    if (cartEntries.length === 0) {
+    if (entries.length === 0) {
         cartItems.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
         return;
     }
 
-    cartItems.innerHTML = cartEntries.map(([productId, quantity]) => {
-        const product = productMap.get(productId);
-        if (!product) {
-            return "";
-        }
+    cartItems.innerHTML = entries.map(([id, quantity]) => {
+        const product = productMap.get(id);
+        if (!product) return "";
 
         return `
             <div class="cart-item">
                 <div>
                     <div class="cart-item-name">${product.name}</div>
                     <div class="cart-item-price">${formatPrice(product.price)} each</div>
+
                     <div class="cart-item-actions">
-                        <button type="button" class="quantity-button" data-quantity-change="${productId},-1" aria-label="Decrease quantity">−</button>
+                        <button
+                            type="button"
+                            class="quantity-button"
+                            data-quantity-change="${id},-1"
+                            aria-label="Decrease quantity"
+                        >−</button>
+
                         <span class="quantity-number">${quantity}</span>
-                        <button type="button" class="quantity-button" data-quantity-change="${productId},1" aria-label="Increase quantity">+</button>
-                        <button type="button" class="remove-button" data-remove-product="${productId}">Remove</button>
+
+                        <button
+                            type="button"
+                            class="quantity-button"
+                            data-quantity-change="${id},1"
+                            aria-label="Increase quantity"
+                        >+</button>
+
+                        <button
+                            type="button"
+                            class="remove-button"
+                            data-remove-product="${id}"
+                        >Remove</button>
                     </div>
                 </div>
-                <div class="cart-item-total">${formatPrice(product.price * quantity)}</div>
+
+                <div class="cart-item-total">
+                    ${formatPrice(product.price * quantity)}
+                </div>
             </div>
         `;
     }).join("");
 }
 
-function addToCart(productId) {
-    const nextQuantity = (cart.get(productId) || 0) + 1;
-    cart.set(productId, nextQuantity);
+function addToCart(id) {
+    if (!productMap.has(id)) return;
+
+    cart.set(id, (cart.get(id) || 0) + 1);
     renderCart();
     openCart();
     showToast("Added to cart");
 }
 
-function updateCartQuantity(productId, delta) {
-    const current = cart.get(productId) || 0;
-    const next = current + delta;
+function updateCartQuantity(id, change) {
+    const quantity = (cart.get(id) || 0) + change;
 
-    if (next <= 0) {
-        cart.delete(productId);
+    if (quantity <= 0) {
+        cart.delete(id);
     } else {
-        cart.set(productId, next);
+        cart.set(id, quantity);
     }
 
     renderCart();
 }
 
-function removeFromCart(productId) {
-    cart.delete(productId);
+function removeFromCart(id) {
+    cart.delete(id);
     renderCart();
 }
 
-function openProductModal(productId) {
-    const product = productMap.get(productId);
-    if (!product) {
-        return;
+function openProductModal(id) {
+    const product = productMap.get(id);
+
+    if (!product || !productModal) return;
+
+    if (productModalImage) {
+        productModalImage.src = product.image;
+        productModalImage.alt = product.name;
     }
 
-    productModalImage.src = product.image;
-    productModalImage.alt = product.name;
-    productModalCategory.textContent = product.categoryLabel;
-    productModalTitle.textContent = product.name;
-    productModalDescription.textContent = product.description;
-    productModalPrice.textContent = formatPrice(product.price);
-    productModalButton.dataset.productId = String(productId);
+    if (productModalCategory) {
+        productModalCategory.textContent = product.categoryLabel;
+    }
+
+    if (productModalTitle) {
+        productModalTitle.textContent = product.name;
+    }
+
+    if (productModalDescription) {
+        productModalDescription.textContent = product.description;
+    }
+
+    if (productModalPrice) {
+        productModalPrice.textContent = formatPrice(product.price);
+    }
+
+    if (productModalButton) {
+        productModalButton.dataset.productId = String(id);
+    }
 
     productModal.classList.add("open");
     productModal.setAttribute("aria-hidden", "false");
@@ -270,160 +363,216 @@ function openProductModal(productId) {
 }
 
 function closeProductModal() {
-    productModal.classList.remove("open");
-    productModal.setAttribute("aria-hidden", "true");
+    productModal?.classList.remove("open");
+    productModal?.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
 }
 
-productSearch.addEventListener("input", (event) => {
+/* Search */
+productSearch?.addEventListener("input", event => {
     searchTerm = event.target.value;
     renderProducts();
 });
 
+/* Category filters */
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
-        activeCategory = button.dataset.category;
+        activeCategory = button.dataset.category || "all";
         renderProducts();
     });
 });
 
-productGrid.addEventListener("click", (event) => {
+/* Product cards and add-to-cart buttons */
+productGrid?.addEventListener("click", event => {
     const addButton = event.target.closest("[data-add-product]");
+
     if (addButton) {
+        event.stopPropagation();
         addToCart(Number(addButton.dataset.addProduct));
         return;
     }
 
-    const productCard = event.target.closest("[data-product-id]");
-    if (productCard) {
-        openProductModal(Number(productCard.dataset.productId));
+    const card = event.target.closest("[data-product-id]");
+
+    if (card) {
+        openProductModal(Number(card.dataset.productId));
     }
 });
 
-productGrid.addEventListener("keydown", (event) => {
-    const productCard = event.target.closest("[data-product-id]");
-    if (!productCard) {
+productGrid?.addEventListener("keydown", event => {
+    if (event.target.closest("button")) return;
+
+    const card = event.target.closest("[data-product-id]");
+
+    if (card && (event.key === "Enter" || event.key === " ")) {
+        event.preventDefault();
+        openProductModal(Number(card.dataset.productId));
+    }
+});
+
+/* Cart controls */
+cartButton?.addEventListener("click", openCart);
+closeCartButton?.addEventListener("click", closeCart);
+cartOverlay?.addEventListener("click", closeCart);
+
+cartItems?.addEventListener("click", event => {
+    const quantityButton = event.target.closest("[data-quantity-change]");
+
+    if (quantityButton) {
+        const [id, change] =
+            quantityButton.dataset.quantityChange.split(",");
+
+        updateCartQuantity(Number(id), Number(change));
         return;
     }
 
-    if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        openProductModal(Number(productCard.dataset.productId));
+    const removeButton = event.target.closest("[data-remove-product]");
+
+    if (removeButton) {
+        removeFromCart(Number(removeButton.dataset.removeProduct));
     }
 });
 
-cartButton.addEventListener("click", openCart);
-closeCartButton.addEventListener("click", closeCart);
-cartOverlay.addEventListener("click", closeCart);
+/* Product modal controls */
+productModalButton?.addEventListener("click", () => {
+    const id = Number(productModalButton.dataset.productId);
 
-document.addEventListener("keydown", (event) => {
+    if (id) {
+        addToCart(id);
+        closeProductModal();
+    }
+});
+
+closeProductModalButton?.addEventListener("click", closeProductModal);
+
+productModal?.addEventListener("click", event => {
+    if (event.target.closest("[data-close-product-modal]")) {
+        closeProductModal();
+    }
+});
+
+document.addEventListener("keydown", event => {
     if (event.key === "Escape") {
         closeCart();
         closeProductModal();
     }
 });
 
-cartItems.addEventListener("click", (event) => {
-    const quantityButton = event.target.closest("[data-quantity-change]");
-    if (quantityButton) {
-        const [productId, delta] = quantityButton.dataset.quantityChange.split(",");
-        updateCartQuantity(Number(productId), Number(delta));
-        return;
-    }
-
-    const removeButton = event.target.closest("[data-remove-product]");
-    if (removeButton) {
-        removeFromCart(Number(removeButton.dataset.removeProduct));
-    }
-});
-
-productModalButton.addEventListener("click", () => {
-    const productId = Number(productModalButton.dataset.productId);
-    if (productId) {
-        addToCart(productId);
-        closeProductModal();
-    }
-});
-
-closeProductModalButton.addEventListener("click", closeProductModal);
-productModal.addEventListener("click", (event) => {
-    if (event.target.closest("[data-close-product-modal]")) {
-        closeProductModal();
-    }
-});
-
-checkoutForm.addEventListener("submit", async (event) => {
+/* Checkout using FormSubmit */
+checkoutForm?.addEventListener("submit", async event => {
     event.preventDefault();
 
-    const cartEntries = [...cart.entries()];
-    if (cartEntries.length === 0) {
-        checkoutStatus.textContent = "Your cart is empty.";
+    if (cart.size === 0) {
+        if (checkoutStatus) {
+            checkoutStatus.textContent = "Your cart is empty.";
+        }
         return;
     }
 
-    const customer = {
-        name: document.getElementById("order-name").value.trim(),
-        email: document.getElementById("order-email").value.trim(),
-        phone: document.getElementById("order-phone").value.trim(),
-        address: document.getElementById("order-address").value.trim(),
-        website: checkoutForm.elements.website?.value || ""
-    };
+    const name = $("order-name")?.value.trim() || "";
+    const email = $("order-email")?.value.trim() || "";
+    const phone = $("order-phone")?.value.trim() || "";
+    const address = $("order-address")?.value.trim() || "";
 
-    const payload = {
-        customer,
-        items: cartEntries.map(([productId, quantity]) => ({
-            id: Number(productId),
-            quantity
-        }))
-    };
+    const items = [...cart.entries()].map(([id, quantity]) => {
+        const product = productMap.get(id);
 
-    checkoutStatus.textContent = "Sending order request...";
-    checkoutStatus.style.color = "var(--red)";
+        return {
+            name: product.name,
+            price: product.price,
+            quantity,
+            subtotal: product.price * quantity
+        };
+    });
+
+    const total = items.reduce((sum, item) => sum + item.subtotal, 0);
+
+    const orderSummary = items.map(item =>
+        `${item.name} x ${item.quantity} — ${formatPrice(item.subtotal)}`
+    ).join("\n");
+
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("address", address);
+    formData.append("order", orderSummary);
+    formData.append("total", formatPrice(total));
+    formData.append("_subject", "New NEXUS BIKE order request");
+    formData.append("_template", "table");
+    formData.append("_captcha", "false");
+
+    if (checkoutStatus) {
+        checkoutStatus.textContent = "Sending order request...";
+        checkoutStatus.style.color = "var(--red)";
+    }
+
+    const submitButton = checkoutForm.querySelector('[type="submit"]');
+
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+    }
 
     try {
-        const response = await fetch("/api/orders", {
+        const response = await fetch(ORDER_API_URL, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Accept": "application/json"
             },
-            body: JSON.stringify(payload)
+            body: formData
         });
 
-        const result = await response.json();
+        const responseText = await response.text();
 
-        if (!response.ok) {
-            throw new Error(result.error || "There was a problem with your order.");
+        let result;
+
+        try {
+            result = JSON.parse(responseText);
+        } catch {
+            throw new Error(
+                "FormSubmit returned an unexpected response. Check your internet connection and try again."
+            );
         }
 
-        checkoutStatus.textContent = `Order request sent successfully. Reference: ${result.orderId}`;
-        checkoutStatus.style.color = "#7ee081";
+        if (!response.ok || result.success === "false" || result.success === false) {
+            throw new Error(
+                result.message || "Your order could not be sent. Please try again."
+            );
+        }
+
+        if (checkoutStatus) {
+            checkoutStatus.textContent =
+                "Your order request was submitted. Please check your email for confirmation.";
+            checkoutStatus.style.color = "#7ee081";
+        }
+
         cart.clear();
         renderCart();
         checkoutForm.reset();
+
     } catch (error) {
-        checkoutStatus.textContent = error.message || "There was a problem with your order.";
-        checkoutStatus.style.color = "#ff8b8b";
+        console.error("NEXUS BIKE checkout error:", error);
+
+        if (checkoutStatus) {
+            checkoutStatus.textContent =
+                error.message || "Unable to send your order. Please try again.";
+            checkoutStatus.style.color = "#ff8b8b";
+        }
+
+    } finally {
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Place Order";
+        }
     }
 });
 
+/* Initialise the shop */
 if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
 }
 
 renderProducts();
 renderCart();
-
-const initialProductCount = document.getElementById("product-count");
-if (initialProductCount) {
-    initialProductCount.textContent = `${products.length} PRODUCTS`;
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-    renderProducts();
-    renderCart();
-});
-
-window.addEventListener("load", () => {
-    renderProducts();
-    renderCart();
-});
