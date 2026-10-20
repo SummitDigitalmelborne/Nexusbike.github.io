@@ -98,7 +98,7 @@ const products = [
         category: "cockpit",
         categoryLabel: "Cockpit",
         description: "Black Pro Taper-style grip for improved control, comfort and grip on your handlebar setup.",
-        price: 59,
+        price: 5,
         image: "./assets/product-pro-taper-black-grip.svg",
         badge: "COCKPIT"
     }
