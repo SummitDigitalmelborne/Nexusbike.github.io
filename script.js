@@ -4,43 +4,43 @@ const ORDER_API_URL = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
 const products = [
     {
         id: 1,
-        name: "Suron Grip",
+        name: "Build Overview 01",
         category: "components",
         categoryLabel: "Components",
-        description: "A replacement grip for your e-bike handlebars.",
-        price: 5,
-        image: "./assets/product-suron-grip.png",
-        badge: "PART"
+        description: "A product-style reference image showing the first Nexus Bike build layout.",
+        price: 99,
+        image: "./Screenshot%202026-10-20%20160148.png",
+        badge: "SETUP"
     },
     {
         id: 2,
-        name: "Suron Talaria Brake No Rotor",
+        name: "Build Overview 02",
         category: "components",
         categoryLabel: "Components",
-        description: "A Suron/Talaria-style brake assembly. Rotor not included.",
-        price: 320,
-        image: "./assets/product-suron-talaria-brake.png",
-        badge: "BRAKES"
+        description: "A product-style reference image showing the second Nexus Bike build layout.",
+        price: 129,
+        image: "./Screenshot%202026-10-20%20160657.png",
+        badge: "SETUP"
     },
     {
         id: 3,
-        name: "UK C1 Display",
+        name: "Build Overview 03",
         category: "electrical",
         categoryLabel: "Electrical",
-        description: "A handlebar display that gives your e-bike conversion kit a clear readout while you ride, mounted so you can check it without taking your eyes off the road.",
-        price: 95,
-        image: "./assets/product-uk-c1-display.png",
-        badge: "DISPLAY"
+        description: "A product-style reference image showing the third Nexus Bike build layout.",
+        price: 149,
+        image: "./Screenshot%202026-10-20%20161649.png",
+        badge: "SETUP"
     },
     {
         id: 4,
-        name: "Suron E-Bike Road Safety Light",
+        name: "Build Overview 04",
         category: "electrical",
         categoryLabel: "Electrical",
-        description: "A bicycle light set designed to help improve your visibility to other road users.",
-        price: 5,
-        image: "./assets/product-suron-road-safety-light.png",
-        badge: "SAFETY"
+        description: "A product-style reference image showing the fourth Nexus Bike build layout.",
+        price: 179,
+        image: "./Screenshot%202026-10-20%20162719.png",
+        badge: "SETUP"
     }
 ];
 
