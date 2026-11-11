@@ -6,7 +6,7 @@
     <meta name="description" content="NEXUS BIKE — Premium Sur-Ron accessories and electric dirt bike upgrades.">
     <title>NEXUS BIKE | Built for the Ride</title>
 
-    <link rel="stylesheet" href="style.css?v=2026-10-20-1">
+    <link rel="stylesheet" href="style.css?v=2026-11-11-admin">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,10 @@
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
         </nav>
+
+        <button class="admin-button" id="admin-button" type="button" aria-label="Manage products">
+            MANAGE
+        </button>
 
         <button class="cart-button" id="cart-button" aria-label="Open shopping cart">
             CART <span id="cart-count">0</span>
@@ -269,8 +273,7 @@
         </p>
 
         <div class="footer-meta">
-            <a href="#archive-unavailable" class="footer-tiny-link"
-                onclick="event.preventDefault(); showToast('Nexus Archive is currently unavailable.');">Nexus Archive</a>
+            <button type="button" class="footer-tiny-link" id="archive-trigger">Nexus Archive</button>
         </div>
     </footer>
 
@@ -304,6 +307,72 @@
         </div>
     </div>
 
-    <script src="script.js?v=2026-10-20-1"></script>
+    <div class="admin-modal" id="admin-modal" aria-hidden="true">
+        <div class="admin-modal-backdrop" data-close-admin-modal></div>
+
+        <div class="admin-modal-panel" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+            <button class="close-admin-modal" id="close-admin-modal" aria-label="Close product manager">✕</button>
+
+            <div class="admin-modal-header">
+                <p class="eyebrow"><span></span> CATALOGUE</p>
+                <h2 id="admin-modal-title">MANAGE <span>PRODUCTS</span></h2>
+            </div>
+
+            <div class="admin-layout">
+                <form id="admin-form" class="admin-form">
+                    <input type="hidden" id="admin-product-id" name="id">
+
+                    <label class="admin-field">
+                        <span>Product name</span>
+                        <input id="admin-product-name" name="name" maxlength="120" required>
+                    </label>
+
+                    <label class="admin-field">
+                        <span>Category</span>
+                        <select id="admin-product-category" name="category" required>
+                            <option value="components">Components</option>
+                            <option value="cockpit">Cockpit</option>
+                            <option value="electrical">Electrical</option>
+                        </select>
+                    </label>
+
+                    <label class="admin-field">
+                        <span>Badge</span>
+                        <input id="admin-product-badge" name="badge" maxlength="25" required>
+                    </label>
+
+                    <label class="admin-field">
+                        <span>Price (AUD)</span>
+                        <input id="admin-product-price" name="price" type="number" min="0" step="0.01" required>
+                    </label>
+
+                    <label class="admin-field">
+                        <span>Image URL</span>
+                        <input id="admin-product-image" name="image" type="url" placeholder="https://..." required>
+                    </label>
+
+                    <label class="admin-field">
+                        <span>Description</span>
+                        <textarea id="admin-product-description" name="description" rows="4" maxlength="220" required></textarea>
+                    </label>
+
+                    <div class="admin-form-actions">
+                        <button type="submit" class="button button-red">SAVE PRODUCT</button>
+                        <button type="button" class="button button-outline" id="admin-reset-button">NEW PRODUCT</button>
+                    </div>
+                </form>
+
+                <div class="admin-list-wrap">
+                    <div class="admin-list-header">
+                        <h3>Current items</h3>
+                        <button type="button" class="button button-outline" id="new-product-button">ADD NEW</button>
+                    </div>
+                    <div id="admin-product-list" class="admin-product-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=2026-11-11-admin"></script>
 </body>
 </html>
